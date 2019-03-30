@@ -1,0 +1,46 @@
+<table class="table table-dark table-hover">
+  <thead>
+    <tr>
+      <td>S.No</td>
+      <td>ID</td>
+      <td>TITLE</td>
+      <td>YEAR</td>
+      <td>AUTHOR</td>
+      <td>Delete Row</td>
+      <td>Update Row</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let book of books,let i=index">
+      <td>{{i+1}}</td>
+      <td>{{book.id}}</td>
+      <td>{{book.title}}</td>
+      <td>{{book.year}}</td>
+      <td>{{book.author}}</td>
+      <td><button type="submit" class="btn btn-danger" (click)="deleteBook(i)">delete</button></td>
+      <td><button type="submit" class="btn btn-primary" (click)="updateBookData(i)">update</button></td>
+    </tr>
+  </tbody>
+</table>
+
+/////////////////add////////////////////
+
+<form #addBook="ngForm" (ngSubmit)="add(addBook.value)">
+
+  Id<input type="number" name="id" ngModel><br>
+  Title<input type="text" name="title" ngModel><br>
+  Year<input type="number" name="year" ngModel><br>
+  Author<input type="text" name="author" ngModel><br>
+  <button type="submit" class="btn btn-success">add</button>
+</form>
+
+/////////////////update///////////////////
+<div *ngIf="isClicked">
+  <form #updateBook="ngForm" (ngSubmit)="test(updateBook.value)">
+     
+      Title<input type="text" name="title" ngModel={{book.title}} ><br>
+      Year<input type="number" name="year" ngModel={{book.year}} ><br>
+      Author<input type="text" name="author"  ngModel={{book.author}} ><br>
+      <button type="submit" class="btn btn-success">update</button>
+  </form>
+</div>
